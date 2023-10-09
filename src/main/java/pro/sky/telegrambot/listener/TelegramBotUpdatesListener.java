@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pro.sky.telegrambot.services.BotService;
 //import pro.sky.telegrambot.services.BotService;
 //import pro.sky.telegrambot.services.BotServiceImpl;
 
@@ -20,10 +21,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     private final  Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
     @Autowired
     private final TelegramBot telegramBot;
-//    private final BotService botService;
-    public TelegramBotUpdatesListener(TelegramBot telegramBot) {
+    @Autowired
+    private final BotService botService;
+    public TelegramBotUpdatesListener(TelegramBot telegramBot,BotService botService) {
         this.telegramBot = telegramBot;
-//        this.botService = botService;
+        this.botService = botService;
     }
     @PostConstruct
     public void init() {
@@ -36,13 +38,15 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             logger.info("Processing update: {}", update);
             // Process your updates here
             if (update.message().text().startsWith("/start")) {
-                SendMessage message = new SendMessage(update.message().chat().id(), "hello");
-                var result = telegramBot.execute(message);
+                SendMessage message = new SendMessage(update.message().chat().id(), "hellllllo");
+                var result = telegramBot.execute(message);//если убрать резалт - что нибудь изменится?
                 if (result.isOk()) {
                     logger.debug("SENT!!");
                 } else {
                     logger.warn("NOT SENT!!");
                 }
+            } else if (update.message().text().startsWith("/add")) {
+                botService.addSmth(update.message());
             }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;

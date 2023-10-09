@@ -1,7 +1,7 @@
 package pro.sky.telegrambot.models;
-import org.springframework.data.annotation.Id;
-import javax.persistence.*;
 
+import javax.persistence.*;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Objects;
 @Entity
@@ -21,6 +21,18 @@ public class NotificationTask {
         if (o == null || getClass() != o.getClass()) return false;
         NotificationTask that = (NotificationTask) o;
         return chatId == that.chatId && Objects.equals(dateTime, that.dateTime) && Objects.equals(message, that.message);
+    }
+
+    public long getChatId() {
+        return chatId;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     @Override
