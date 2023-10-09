@@ -23,6 +23,18 @@ public class NotificationTask {
         return chatId == that.chatId && Objects.equals(dateTime, that.dateTime) && Objects.equals(message, that.message);
     }
 
+    public long getChatId() {
+        return chatId;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(chatId, dateTime, message);
