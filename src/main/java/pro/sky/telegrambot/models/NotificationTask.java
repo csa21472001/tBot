@@ -1,7 +1,6 @@
 package pro.sky.telegrambot.models;
-import org.springframework.data.annotation.Id;
 import javax.persistence.*;
-
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Objects;
 @Entity
