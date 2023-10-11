@@ -50,14 +50,11 @@ public class BotServiceImpl implements BotService {
         var time = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         var result = repository.findByDateTime(time);
         for (var t : result) {
-            if (!(t == null)) {
-            var response = new SendMessage(t.getChatId(), "Сообщение с временем указанным выше обнаружено в базе");
+            var response = new SendMessage(t.getChatId(), t.getMessage());
             telegramBot.execute(response);
-            } else {
-                throw new IllegalArgumentException("Запись с текущим временем не обнаружена");
             }
 
         }
     }
 
-}
+

@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class Parser {
 
     public static NotificationTask tryParseNotificationTask (String dateAndTime) {
-        Pattern pattern = Pattern.compile("([0-9.:\\s]{16})(\\s)(.+)");
+        Pattern pattern = Pattern.compile("(.{5})([0-9.:\\s]{16})(\\s)(.+)");
         Matcher matcher = pattern.matcher(dateAndTime);
         NotificationTask notificationTask = new NotificationTask();
         if (matcher.matches()) {

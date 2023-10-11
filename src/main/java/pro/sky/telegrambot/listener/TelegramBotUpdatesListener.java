@@ -39,7 +39,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             // Process your updates here
             if (update.message().text().startsWith("/start")) {
                 SendMessage message = new SendMessage(update.message().chat().id(), "hellllllo");
-                var result = telegramBot.execute(message);//если убрать резалт - что нибудь изменится?
+                var result = telegramBot.execute(message);//??
                 if (result.isOk()) {
                     logger.debug("SENT!!");
                 } else {
